@@ -41,14 +41,14 @@ app.use(express.static(path.join(__dirname, "public")));
 
 
 // MongoDB connection
-mongoose.connect(config.url)
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.error("Connection error:", err));
+// mongoose.connect(config.url)
+//   .then(() => console.log("MongoDB connected"))
+//   .catch((err) => console.error("Connection error:", err));
 
 // Connect to Airbnb DB (Atlas)
-// mongoose.connect(process.env.MONGO_URI_AIRBNB)
-//   .then(() => console.log("Airbnb DB connected"))
-//   .catch((err) => console.error("Airbnb DB connection error:", err));
+mongoose.connect(process.env.MONGO_URI_AIRBNB)
+  .then(() => console.log("Airbnb DB connected"))
+  .catch((err) => console.error("Airbnb DB connection error:", err));
 
 // // Local DB for the question 1
 // const employeeDB = mongoose.createConnection(process.env.MONGO_URI);      
