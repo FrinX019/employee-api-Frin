@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
 // ===============================
 router.get("/list", async (req, res, next) => {
   try {
-    const listings = await Listing.find().lean();
+    const listings = await Listing.find().limit(10).lean();
     res.render("allListings", { listings });
   } catch (err) {
     next(err);
