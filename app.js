@@ -167,6 +167,8 @@ app.use((err, req, res, next) => {
 });
 
 // Start server
-app.listen(config.port, () => {
-  console.log(`Server running on port ${config.port}`);
-});
+// app.listen(config.port, () => {
+//   console.log(`Server running on port ${config.port}`);
+// });
+
+module.exports = app;
