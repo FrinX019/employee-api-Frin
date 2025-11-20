@@ -32,7 +32,10 @@ app.engine("hbs", exphbs.engine({
     extname: "hbs",
     defaultLayout: "main",
     layoutsDir: path.join(__dirname, "views", "layouts"),
-    partialsDir: path.join(__dirname, "views", "partials")
+    partialsDir: path.join(__dirname, "views", "partials"),
+    helpers: {
+        eq: (a, b) => a === b
+    }
 }));
 
 app.set("view engine", "hbs");
@@ -71,6 +74,25 @@ process.on("SIGINT", async () => {
   await db.close();
   console.log("Mongoose disconnected on app termination");
   process.exit(0);
+});
+
+
+app.get("/", (req, res) => {
+  res.send(`
+    <h1>Hello, welcome to my assignment!</h1>
+    <p>This project includes API routes and Handlebars UI pages.</p>
+
+    <h3>Available Links:</h3>
+    <ul>
+      <li><a href="/api/airbnb">API: All Listings</a></li>
+      <li><a href="/api/airbnb">HBS: Home Page</a></li>
+      <li><a href="/api/airbnb/list">HBS: All Listings Page</a></li>
+      <li><a href="/search-type">HBS: Search by Room Type</a></li>
+      <li><a href="/api-docs">API Documentation</a></li>
+    </ul>
+
+    <p>Made by: <strong>Frin Patel</strong></p>
+  `);
 });
 
 // Load routes

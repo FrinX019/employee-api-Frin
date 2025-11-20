@@ -8,16 +8,25 @@
 
     {{> header}}
 
-    <header>
-        <h1>Airbnb Management</h1>
-        <nav>
-            <a href="/">Home ||</a>
-            <a href="/airbnb_hbs/list">All Listings ||</a>
-            <a href="/airbnb_hbs/add">Add Listing ||</a>
-            <a href="/airbnb_hbs/update">Update Listing ||</a>
-            <a href="/airbnb_hbs/delete">Delete Listing</a>
-        </nav>
-    </header>
+   <header class="navbar">
+    <h1 class="nav-title">Airbnb Management</h1>
+
+    <nav>
+        <a href="/">Home</a>
+
+        <div class="dropdown">
+            <button class="dropbtn">Manage Listings ▾</button>
+            <div class="dropdown-content">
+                <a href="/airbnb_hbs/list">All Listings</a>
+                <a href="/airbnb_hbs/add">Add Listing</a>
+                <a href="/airbnb_hbs/search">Search Listing</a>
+                <a href="/airbnb_hbs/update">Update Listing</a>
+                <a href="/airbnb_hbs/delete">Delete Listing</a>
+            </div>
+        </div>
+
+    </nav>
+</header>
 
     
 

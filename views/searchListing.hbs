@@ -1,0 +1,59 @@
+<h2>Search Listing</h2>
+
+<form method="get" action="/airbnb_hbs/search">
+    
+    <label>Search By:</label>
+    <select name="method" id="methodSelect" onchange="toggleInput()">
+        <option value="">-- Choose --</option>
+        <option value="id" {{#if (eq method "id")}}selected{{/if}}>Listing ID</option>
+        <option value="name" {{#if (eq method "name")}}selected{{/if}}>Listing Name</option>
+    </select>
+
+    <br>
+
+    {{!-- Dynamic Input Field --}}
+    <div id="inputBox">
+        {{#if method}}
+        <input 
+            type="text" 
+            name="value" 
+            placeholder="Enter {{method}}" 
+            value="{{value}}"
+        >
+        {{/if}}
+    </div>
+
+    <button type="submit">Search</button>
+</form>
+
+<hr>
+
+{{#if listing}}
+    <h3>Listing Found</h3>
+    <p><strong>ID:</strong> {{listing.id}}</p>
+    <p><strong>Name:</strong> {{listing.NAME}}</p>
+    <p><strong>Neighbourhood:</strong> {{listing.neighbourhood}}</p>
+    <p><strong>Price:</strong> {{listing.price}}</p>
+
+    <a href="/airbnb_hbs/view/{{listing.id}}">View Details</a>
+{{else}}
+    {{#if value}}
+        <p>No results found for "{{value}}".</p>
+    {{/if}}
+{{/if}}
+
+<script>
+function toggleInput() {
+    const method = document.getElementById("methodSelect").value;
+    const box = document.getElementById("inputBox");
+
+    if (!method) {
+        box.innerHTML = "";
+        return;
+    }
+
+    box.innerHTML = `
+        <input type="text" name="value" placeholder="Enter ${method}">
+    `;
+}
+</script>

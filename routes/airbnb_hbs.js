@@ -50,6 +50,35 @@ router.post("/add", async (req, res, next) => {
   }
 });
 
+
+// ===============================
+// ADVANCED SEARCH (ID or NAME)
+// ===============================
+router.get("/search", async (req, res, next) => {
+  try {
+    const method = req.query.method;   // id or name
+    const value = req.query.value;     // user input
+
+    // If nothing selected → show empty page
+    if (!method || !value) {
+      return res.render("searchListing", { method });
+    }
+
+    let listing = null;
+
+    if (method === "id") {
+      listing = await Listing.findOne({ id: value }).lean();
+    } else if (method === "name") {
+      listing = await Listing.findOne({ NAME: value }).lean();
+    }
+
+    res.render("searchListing", { method, value, listing });
+
+  } catch (err) {
+    next(err);
+  }
+});
+
 // ===============================
 // UPDATE LISTING – SEARCH PAGE
 // ===============================

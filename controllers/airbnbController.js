@@ -17,9 +17,9 @@ exports.getAll = async (req, res, next) => {
 
     // Price filter
     if (minPrice || maxPrice) {
-      filter["pricing.price"] = {};
-      if (minPrice) filter["pricing.price"].$gte = Number(minPrice);
-      if (maxPrice) filter["pricing.price"].$lte = Number(maxPrice);
+      filter["price"] = {};
+      if (minPrice) filter["price"].$gte = Number(minPrice);
+      if (maxPrice) filter["price"].$lte = Number(maxPrice);
     }
 
     // Neighbourhood filter
